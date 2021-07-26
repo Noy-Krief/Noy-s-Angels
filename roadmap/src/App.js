@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Popup from './Popup';
 import './App.css';
+import { Timeline, Bookmark } from 'react-vertical-timeline';
 
 function App() {
-  return (
-    <div className="App">
+  const [isOpen, setIsOpen] = useState(false);
+ 
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
+
+  return <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button className="profile" onClick={togglePopup}>My Profile</button>
       </header>
-    </div>
-  );
+    {isOpen && <Popup
+      content={<>
+        <h2>Hello Doron</h2>
+        <table className="details">
+          <tr>
+            <th>Job Title:</th>
+            <th>DevOps</th>
+          </tr>
+          <tr>
+            <th>Rank:</th>
+            <th>Private</th>
+          </tr>
+        </table>
+      </>}
+      handleClose={togglePopup}
+    />}
+  </div>
 }
 
 export default App;
