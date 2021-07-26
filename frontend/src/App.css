@@ -3,10 +3,11 @@
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  color: black;
   }
 
 .App-logo {
-  height: 15vmin;
+  height: 10vmin;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -51,4 +52,114 @@
     left: 10px;
     top: 30px;
   }
+}
+
+
+.profile {
+  background-color: #282c34;
+  color: white;
+  height: 50px;
+  width: 150px;
+  left: 88%;
+  top: 1%;
+  position: fixed;
+}
+
+.profile:hover {
+  background-color: #33373f;
+}
+
+.move {
+  left: 88%;
+  top: 10%;
+  position: fixed;
+}
+
+/* Popup style */
+.popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.box {
+  position: relative;
+  width: 20%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.close-icon {
+  content: 'x';
+  cursor: pointer;
+  position: fixed;
+  right: calc(40% - 33px);
+  top: calc(100vh - 85vh - 33px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+}
+
+.details {
+  width: 100%;
+  direction: rtl;
+  text-align:right;
+  color: black;
+  font-size: medium;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.logo:hover {
+  width: 65px;
+  height: 65px;
+}
+
+.hafifa {
+  position: absolute;
+  left: 350px;
+  top: 10px;
+}
+
+.rabat {
+  position: absolute;
+  left: 430px;
+  top: 40px;
+}
+
+.samal {
+  position: absolute;
+  left: 730px;
+  top: 40px;
+}
+
+.samar {
+  position: absolute;
+  left: 1000px;
+  top: 140px;
+}
+
+.money {
+  position: absolute;
+  left: 650px;
+  top: 180px;
 }
