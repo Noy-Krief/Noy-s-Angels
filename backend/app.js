@@ -66,7 +66,9 @@ client.connect(err => {
   app.listen(3000, () => {console.log("server running on port 3000")})
 });
 
-
-
+app.get('/new', (req, res) => {
+  res.send('Hello World!')
+})
 
 module.exports = app;
+
