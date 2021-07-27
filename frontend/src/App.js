@@ -7,13 +7,16 @@ import rabat from './images/rabat.png';
 import Popup from './Popup';
 import samal from './images/samal.png';
 import samar from './images/samar.png';
-import money from './images/money.png'
-
+import money from './images/money.png';
+import course from './images/course.png'
+import education from './images/education.png';
+import sagam from './images/sagam.png';
+import axios from 'axios';
 const day = 1300 ;
 
 function ProfileCard() {
   const [isOpen, setIsOpen] = useState(false);
- 
+
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
@@ -45,6 +48,19 @@ function ProfileCard() {
   </div>
 }
 
+function KaderCard() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
+  return <div><button className="kader">?מי יקאדר אותי</button>
+  </div>}
+
+
+
+
+
 function HafifaCard() {
   const [isOpen, setIsOpen] = useState(false);
  
@@ -75,7 +91,25 @@ function RabatCard() {
     {isOpen && <Popup
       content={<>
         <h2>רב"ט</h2>
-        <p>מזל טוב! קצת פחות צעירים עכשיו</p>
+        <p>נהוג לעשות פריסת רב"ט. .שימו לב להכין שתייה קלה עבור המדור והאנשים שהולכים לברך אתכם בברכות מביכות</p>
+      </>}
+      handleClose={togglePopup}
+    />}
+  </div>
+}
+function CourseCard() {
+  const [isOpen, setIsOpen] = useState(false);
+ 
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
+
+  return <div className="App">
+      <img src={course} alt="course" className="logo course" onClick={togglePopup}></img>
+    {isOpen && <Popup
+      content={<>
+        <h2>קורס שלב 09</h2>
+        <p>קורס שלב: כדי לקבל את דרגת הסמל יש צורך לעבור קורס שלב. צריך להעביר במרשל (מערכת קורסים) את המשתמש שלך להיות תחת הענף. כמה חודשים לפני קבלת הסמל (מומלץ חצי שנה) יש להיכנס למרשל, לבחור קורס מההיצע הקיים. קורסים: cyber warfer devops security ci/cd - קורס מצוין python linux מבוא לתקש"נ</p>
       </>}
       handleClose={togglePopup}
     />}
@@ -99,6 +133,52 @@ function SamalCard() {
     />}
   </div>
 }
+function EducationCard() {
+  const [isOpen, setIsOpen] = useState(false);
+ 
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
+
+  return <div className="App">
+      <img src={education} alt="education" className="logo education" onClick={togglePopup}></img>
+    {isOpen && <Popup
+      content={<>
+        <h2>לימודים</h2>
+        <p>הרבה אנשים מתחילים ללמוד במהלך השירות. כל חייל שלומד זכאי לחצי יום חופש בשבוע למטרת לימודים. המסלולים העיקריים בהם חיילים בוחרים הם האוניברסיטה הפתוחה או המכללה למנהל. אוניברסיטה פתוחה - למידת תואר בקצב שלך על בסיס קורסים לבחירתך. המכללה למנהל -למידת תואר במסלול חיילים בו הלימודים הם לימודי ערב וחיילים טכנולוגים מקבלים נקודות זכות. נחשב התואר הקל מבין השניים.</p>
+      </>}
+      handleClose={togglePopup}
+    />}
+  </div>
+}
+function OfficerCard() {
+  const [isOpen, setIsOpen] = useState(false);
+ 
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
+
+  return <div className="App">
+      <img src={sagam} alt="sagam" className="logo sagam" onClick={togglePopup}></img>
+    {isOpen && <Popup
+      content={<>
+        <h2>קצונה</h2>
+        <p>קצונה או נגדות? התלבטות קשה (יש שיגידו קלה) עומדת בפניכם התייעצו עם קצינים ונגדים על המשך המסלול כדי לדעת מהי הדרך המתאימה לכם
+
+מסלול קצונה:
+
+ועדות קצונה: ועדות בתוך היחידה שמטרתם לוודא את התאמתכם
+מבדקים: מבחנים ראשוניים על מקראות ישראל ובראור
+הכנה לקצונה: קורס באורך של שבועיים של כל המיועדים לקצונה טכנולוגית ומבצעית שמטרתו לוודא התאמה ולנפות רגע לפני הכניסה לבה"ד. מקראות ישראל: חומר ללמידה אודות ההיסטוריה של מדינת ישראל, תרבות, אישים חשובים ומלחמות ישראל.
+מסלול נגדים:
+
+אין קאדרים, בהצלחה</p>
+      </>}
+      handleClose={togglePopup}
+    />}
+  </div>
+}
+
 function SamarCard() {
   const [isOpen, setIsOpen] = useState(false);
  
@@ -187,15 +267,40 @@ move = () => {
   }
 }
 
+handleSubmit(e) {
+  e.preventDefault();
+}
+ GetUserData() {
+  return <div>
+          <header className="user">
+    <form onSubmit={async (e)=> {
+                    const user = await axios.get('http://104.45.145.1:80/getUser', {
+                    headers: {
+                    'name': document.getElementById("user").value
+                    }
+                    }
+                    )                   
+this.setState({
+  user: user
+});
+alert(document.getElementById("user").value);
+    }}><label>:שם משתמש</label><input id="user" type="text"></input></form></header>
+  </div>
+}
 render() {
 	return (
 	<div className="App App-header" style={{ backgroundImage: `url(${background})` }}>
+    {/* {this.GetUserData()} */}
+    <CourseCard></CourseCard>
     <ProfileCard></ProfileCard>
 		<HafifaCard></HafifaCard>
     <RabatCard></RabatCard>
     <SamalCard></SamalCard>
+    <EducationCard></EducationCard>
     <SamarCard></SamarCard>
     <MoneyCard></MoneyCard>
+    <OfficerCard></OfficerCard>
+    <KaderCard></KaderCard>
     <img 
     src={logo}
     className="App-logo"
